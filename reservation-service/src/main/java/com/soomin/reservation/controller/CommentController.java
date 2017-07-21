@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.soomin.reservation.dto.Comment;
+import com.soomin.reservation.dto.CommentScore;
 import com.soomin.reservation.service.CommentService;
 
 @RestController
@@ -23,7 +24,7 @@ public class CommentController {
 	}
 	
 	@GetMapping("/products/count/{id}")
-	public int getCount(@PathVariable long id) {
+	public CommentScore getCount(@PathVariable long id) {
 		return commentService.CountProductComment(id);
 	}
 

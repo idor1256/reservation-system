@@ -3,6 +3,7 @@ package com.soomin.reservation.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.soomin.reservation.dao.CommentDao;
 import com.soomin.reservation.dao.DisplayInfoDao;
 import com.soomin.reservation.dao.ProductDao;
 import com.soomin.reservation.dao.ProductDetailDao;
@@ -19,6 +20,8 @@ public class ProductInfoServiceImpl implements ProductInfoService{
 	ProductImageDao productImageDao;
 	@Autowired
 	DisplayInfoDao displayInfoDao;
+	@Autowired
+	CommentDao commentDao;
 	
 	@Override
 	public ProductInfo getProductInfo(long id) {
@@ -28,6 +31,8 @@ public class ProductInfoServiceImpl implements ProductInfoService{
 		productInfo.setDetail(productDetailDao.SelectProductDetailById(id).get(0));
 		productInfo.setDisplay_info(displayInfoDao.SelectInfoById(id).get(0));
 		productInfo.setImages(productImageDao.selectRepresentByProductId(id));
+		productInfo.setComment_score(commentDao.CountByProductId(id));
+		productInfo.setCount_images(productImageDao.countByProductId(id));
 		
 		return productInfo;
 	}

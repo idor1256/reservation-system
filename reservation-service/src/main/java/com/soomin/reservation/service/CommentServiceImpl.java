@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.soomin.reservation.dao.CommentDao;
 import com.soomin.reservation.dto.Comment;
+import com.soomin.reservation.dto.CommentScore;
 
 @Service
 public class CommentServiceImpl implements CommentService{
@@ -14,15 +15,16 @@ public class CommentServiceImpl implements CommentService{
 	CommentDao commentDao;
 	
 	@Override
-	public int CountProductComment(long productId) {
+	public CommentScore CountProductComment(long productId) {
 		// TODO Auto-generated method stub
-		return commentDao.CountByProductId(productId);
+		CommentScore score = commentDao.CountByProductId(productId);
+		score.setPercent((int)(score.getScore()/score.getCount()*100));
+		return score;
 	}
 
 	@Override
 	public List<Comment> GetProductComment(long productId) {
 		// TODO Auto-generated method stub
-		
 		return commentDao.SelectByProductId(productId);
 	}
 	

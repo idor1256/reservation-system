@@ -14,13 +14,13 @@ public class ProductImageServiceImpl implements ProductImageService{
 	ProductImageDao productImageDao;
 	
 	@Override
-	public List<ProductImage> getImage(long productId) {
+	public List<ProductImage> getRepresentitiveImage(long productId) {
 		// TODO Auto-generated method stub
 		return productImageDao.selectRepresentByProductId(productId);
 	}
 
 	@Override
-	public ProductImage getRepresentitiveImage(long productId) {
+	public ProductImage getThumbnailImage(long productId) {
 		// TODO Auto-generated method stub
 		return productImageDao.selectThumbnailByProductId(productId);
 	}
@@ -29,6 +29,12 @@ public class ProductImageServiceImpl implements ProductImageService{
 	public int getCount(long productId) {
 		// TODO Auto-generated method stub
 		return productImageDao.countByProductId(productId);
+	}
+
+	@Override
+	public List<ProductImage> getAdditionalImage(long productId) {
+		// TODO Auto-generated method stub
+		return productImageDao.selectAdditionalByProductId(productId);
 	}
 	
 }

@@ -136,7 +136,7 @@ public class FileController {
     		@PathVariable(name="id") long id,
             HttpServletResponse response
     ) {
-    	ProductImage images = productImageService.getRepresentitiveImage(id);
+    	ProductImage images = productImageService.getThumbnailImage(id);
 		List<Files> loadFiles = fileService.loadFile(images.getFile_id());
 
     	for(Files loadFile : loadFiles) {

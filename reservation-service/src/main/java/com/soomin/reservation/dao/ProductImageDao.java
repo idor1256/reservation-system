@@ -31,6 +31,11 @@ public class ProductImageDao {
 		Map<String, ?> params = Collections.singletonMap("product_id", id);
 		return jdbc.query(ProductImageSqls.SELECT_ONE_BY_PRODUCT_ID, params, rowMapper).get(0);
 	}
+	
+	public List<ProductImage> selectAdditionalByProductId(long id){
+		Map<String, ?> params = Collections.singletonMap("product_id", id);
+		return jdbc.query(ProductImageSqls.SELECT_ADDITIONAL_BY_PRODUCT_ID, params, rowMapper);
+	}
 
 	public int countByProductId(long id) {
 		// TODO Auto-generated method stub
